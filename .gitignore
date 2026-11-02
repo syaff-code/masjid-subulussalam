@@ -1,0 +1,9 @@
+# Temporary & build files
+shot*.png
+*.tmp
+.DS_Store
+Thumbs.db
+
+# Knowledge Graph & Agent Artifacts
+graphify-out/
+.gemini/

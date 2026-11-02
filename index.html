@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Masjid Subulussalam — Jadwal Sholat</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Fraunces:ital,opsz,wght@0,9..144,600;1,9..144,500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --g900:#03201a; --g800:#062e24; --g700:#0a3f31; --g600:#0f5a43; --g400:#2fa47a; --mint:#9be7c4;
+  --gold:#e3b75a; --gold2:#f6d98f; --cream:#f7f1e3;
+  --u:1vmin;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{background:var(--g900)}
+html,body{height:100%;overflow:hidden;color:var(--cream);
+  font-family:'Bricolage Grotesque',system-ui,sans-serif;font-variant-numeric:tabular-nums;cursor:none}
+body{display:grid;grid-template-rows:auto 1fr auto auto;height:100vh;position:relative}
+
+/* ===== background ===== */
+.bg{position:fixed;inset:0;z-index:-2;
+  background:radial-gradient(ellipse 80% 60% at 50% 35%,#0e5440 0%,var(--g800) 55%,var(--g900) 100%)}
+.pattern{position:fixed;inset:-200px;z-index:-1;opacity:.09;animation:drift 120s linear infinite;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%23e3b75a' stroke-width='1.4'%3E%3Cpath d='M60 10 L74 46 L110 60 L74 74 L60 110 L46 74 L10 60 L46 46Z'/%3E%3Crect x='32' y='32' width='56' height='56' transform='rotate(45 60 60)'/%3E%3Crect x='32' y='32' width='56' height='56'/%3E%3Ccircle cx='60' cy='60' r='12'/%3E%3Cpath d='M0 0 L20 20 M120 0 L100 20 M0 120 L20 100 M120 120 L100 100'/%3E%3C/g%3E%3C/svg%3E");
+  background-size:calc(var(--u)*14)}
+@keyframes drift{to{transform:translate(120px,120px)}}
+.glow{position:fixed;width:60vmin;height:60vmin;border-radius:50%;filter:blur(80px);z-index:-1;opacity:.35}
+.glow.a{background:#1f8f66;top:-20vmin;left:-15vmin;animation:float 18s ease-in-out infinite}
+.glow.b{background:#b8892f;bottom:-25vmin;right:-10vmin;opacity:.18;animation:float 22s ease-in-out infinite reverse}
+@keyframes float{50%{transform:translate(6vmin,4vmin)}}
+
+.skyline{position:fixed;left:0;right:0;bottom:calc(var(--u)*24);height:30vh;z-index:-1;opacity:.16;pointer-events:none}
+
+/* lanterns */
+.lantern{position:fixed;top:0;width:calc(var(--u)*5);z-index:1;transform-origin:top center;animation:sway 5s ease-in-out infinite}
+.lantern.l1{left:4vw}.lantern.l2{right:4vw;animation-delay:-2.5s}
+.lantern svg{width:100%;display:block;filter:drop-shadow(0 0 calc(var(--u)*2) rgba(246,217,143,.55))}
+@keyframes sway{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-3deg)}}
+
+/* ===== header ===== */
+header{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;padding:calc(var(--u)*2.4) 9vw calc(var(--u)*1.5);gap:4vw}
+.clock{font-weight:800;font-size:calc(var(--u)*10);line-height:1;letter-spacing:-.03em}
+.clock small{font-size:.38em;color:var(--gold);margin-left:.15em;font-weight:600}
+.brand{text-align:center}
+.brand .ar{font-family:'Amiri',serif;color:var(--gold2);font-size:calc(var(--u)*3.4);line-height:1.1}
+.brand h1{font-family:'Fraunces',serif;font-weight:600;font-size:calc(var(--u)*5.4);line-height:1.05;letter-spacing:-.01em}
+.brand p{font-size:calc(var(--u)*1.9);color:var(--mint);letter-spacing:.25em;text-transform:uppercase;margin-top:calc(var(--u)*.6)}
+.dates{text-align:right}
+.dates .hijri{font-weight:600;font-size:calc(var(--u)*3.4);color:var(--gold2)}
+.dates .masehi{font-size:calc(var(--u)*2.3);opacity:.85;margin-top:calc(var(--u)*.4)}
+
+/* ===== main ===== */
+main{display:grid;grid-template-columns:1fr 1.15fr;gap:4vw;padding:calc(var(--u)*1) 9vw calc(var(--u)*2);align-items:center;min-height:0}
+.arch{position:relative;aspect-ratio:4/4.3;max-height:52vh;justify-self:center;width:100%;max-width:62vmin;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding-top:8%}
+.arch svg.frame{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.arch .lbl{font-size:calc(var(--u)*2.2);letter-spacing:.3em;text-transform:uppercase;color:var(--mint);position:relative}
+.arch .name{font-family:'Fraunces',serif;font-size:calc(var(--u)*8.5);line-height:1;margin:calc(var(--u)*1) 0 calc(var(--u)*.5);position:relative}
+.arch .at{font-size:calc(var(--u)*2.6);color:var(--gold2);position:relative}
+.arch .cd{font-weight:800;font-size:calc(var(--u)*8.5);letter-spacing:-.02em;line-height:1;margin-top:calc(var(--u)*2);position:relative;
+  background:linear-gradient(180deg,#fff,var(--gold2));-webkit-background-clip:text;background-clip:text;color:transparent}
+
+.quote{position:relative;padding:calc(var(--u)*3.5) calc(var(--u)*4.2);border-radius:calc(var(--u)*3);
+  background:linear-gradient(135deg,rgba(255,255,255,.07),rgba(255,255,255,.02));border:1px solid rgba(227,183,90,.28);
+  backdrop-filter:blur(6px);display:flex;flex-direction:column;justify-content:center;min-height:36vh}
+.quote::before{content:"";position:absolute;inset:calc(var(--u)*1);border:1px dashed rgba(227,183,90,.18);border-radius:calc(var(--u)*2.2);pointer-events:none}
+.quote .tag{align-self:flex-start;display:inline-flex;align-items:center;gap:.6em;background:var(--gold);color:var(--g900);font-weight:800;
+  font-size:calc(var(--u)*1.8);padding:.45em 1em;border-radius:99px;letter-spacing:.08em;text-transform:uppercase}
+.quote blockquote{font-family:'Fraunces',serif;font-style:italic;font-weight:500;font-size:calc(var(--u)*4.6);line-height:1.2;margin-top:calc(var(--u)*2);
+  text-wrap:balance}
+.quote blockquote em{font-style:normal;color:var(--gold2)}
+.quote .mark{position:absolute;right:calc(var(--u)*3);top:calc(var(--u)*-2);font-family:'Fraunces',serif;font-size:calc(var(--u)*16);line-height:1;color:var(--gold);opacity:.35}
+.quote .foot{margin-top:calc(var(--u)*2.2);font-size:calc(var(--u)*2.2);color:var(--gold2);font-weight:600;letter-spacing:.02em;opacity:.95}
+.quote .foot:empty{display:none}
+.fade{animation:fade 1.2s ease}
+@keyframes fade{from{opacity:0;transform:translateY(12px)}}
+
+/* ===== prayer row ===== */
+.prayers{display:grid;grid-template-columns:repeat(7,1fr);gap:calc(var(--u)*1.2);padding:0 4vw calc(var(--u)*1.6)}
+.p{position:relative;text-align:center;padding:calc(var(--u)*2) 0 calc(var(--u)*1.8);border-radius:calc(var(--u)*2.2) calc(var(--u)*2.2) calc(var(--u)*1) calc(var(--u)*1);
+  background:rgba(3,32,26,.55);border:1px solid rgba(155,231,196,.14);transition:.6s}
+.p .n{font-size:calc(var(--u)*2.6);opacity:.85}
+.p .t{font-weight:800;font-size:calc(var(--u)*6);line-height:1.05;letter-spacing:-.02em}
+.p .s{font-size:calc(var(--u)*1.7);height:1.4em;opacity:.8}
+.p.minor .t{color:var(--mint);font-weight:600}
+.p.next{background:linear-gradient(180deg,var(--gold2),var(--gold));color:var(--g900);border-color:transparent;transform:translateY(calc(var(--u)*-1.4));
+  box-shadow:0 calc(var(--u)*1.5) calc(var(--u)*4) rgba(227,183,90,.35)}
+.p.next .t{color:var(--g900)} .p.next .n{opacity:1;font-weight:600}
+.p.next::before{content:"";position:absolute;left:50%;top:calc(var(--u)*-1.6);width:calc(var(--u)*2.2);height:calc(var(--u)*2.2);
+  background:var(--gold2);transform:translateX(-50%) rotate(45deg);border-radius:3px;z-index:-1}
+
+/* ===== ticker ===== */
+.ticker{background:var(--g600);border-top:2px solid var(--gold);overflow:hidden;white-space:nowrap;font-size:calc(var(--u)*2.4);padding:calc(var(--u)*1) 0;display:flex}
+.ticker .badge{flex:none;background:var(--gold);color:var(--g900);font-weight:800;padding:0 2vw;margin:calc(var(--u)*-1) 0;display:flex;align-items:center;z-index:1;letter-spacing:.06em}
+.ticker .track{display:inline-block;padding-left:100%;animation:run 60s linear infinite}
+.ticker .track span{margin-right:5vw}
+.ticker .track span::before{content:"✦";color:var(--gold2);margin-right:1.2vw}
+@keyframes run{to{transform:translateX(-100%)}}
+
+/* ===== overlay adzan / iqamah ===== */
+.overlay{position:fixed;inset:0;z-index:10;display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;
+  background:radial-gradient(circle at 50% 45%,#0f5a43,var(--g900) 70%)}
+.overlay.on{display:flex}
+.overlay .ar{font-family:'Amiri',serif;font-size:calc(var(--u)*9);color:var(--gold2);line-height:1.3}
+.overlay h2{font-family:'Fraunces',serif;font-size:calc(var(--u)*9);line-height:1.05;margin-top:calc(var(--u)*1)}
+.overlay .big{font-weight:800;font-size:calc(var(--u)*22);line-height:1;margin:calc(var(--u)*2) 0;color:var(--gold2)}
+.overlay p{font-size:calc(var(--u)*3);color:var(--mint);max-width:70vw}
+.overlay.dim{background:#000}
+.overlay.dim *{opacity:.55}
+.ring{position:absolute;width:70vmin;height:70vmin;border-radius:50%;border:2px solid rgba(227,183,90,.35);animation:pulse 3s ease-out infinite}
+@keyframes pulse{from{transform:scale(.6);opacity:1}to{transform:scale(1.5);opacity:0}}
+.overlay.dim .ring{display:none}
+
+.err{position:fixed;bottom:calc(var(--u)*1);right:calc(var(--u)*1);font-size:calc(var(--u)*1.4);opacity:.5}
+</style>
+</head>
+<body>
+<div class="bg"></div><div class="pattern"></div><div class="glow a"></div><div class="glow b"></div>
+
+<!-- skyline masjid -->
+<svg class="skyline" viewBox="0 0 1600 300" preserveAspectRatio="xMidYMax slice" fill="#9be7c4">
+  <g id="mq">
+    <rect x="560" y="170" width="480" height="110"/>
+    <path d="M640 175 Q800 20 960 175Z"/><rect x="796" y="40" width="8" height="40"/><circle cx="800" cy="38" r="8"/>
+    <path d="M565 180 Q615 110 665 180Z"/><path d="M935 180 Q985 110 1035 180Z"/>
+    <rect x="490" y="60" width="34" height="220"/><path d="M486 62 L507 0 L528 62Z"/><rect x="482" y="120" width="50" height="10"/>
+    <rect x="1076" y="60" width="34" height="220"/><path d="M1072 62 L1093 0 L1114 62Z"/><rect x="1068" y="120" width="50" height="10"/>
+  </g>
+  <g fill-opacity=".55">
+    <path d="M60 280 V200 Q110 150 160 200 V280Z"/><rect x="200" y="120" width="22" height="160"/><path d="M196 122 L211 80 L226 122Z"/>
+    <path d="M1380 280 V210 Q1440 150 1500 210 V280Z"/><rect x="1530" y="130" width="22" height="150"/><path d="M1526 132 L1541 90 L1556 132Z"/>
+    <path d="M280 280 V230 Q320 195 360 230 V280Z"/><path d="M1250 280 V230 Q1290 195 1330 230 V280Z"/>
+  </g>
+</svg>
+
+<!-- lentera -->
+<div class="lantern l1"><svg viewBox="0 0 60 200"><line x1="30" y1="0" x2="30" y2="70" stroke="#e3b75a" stroke-width="2"/><path d="M18 70h24l-4 10H22z" fill="#e3b75a"/><path d="M14 82 Q30 72 46 82 L50 140 Q30 160 10 140Z" fill="#f6d98f" fill-opacity=".85" stroke="#e3b75a" stroke-width="3"/><path d="M30 82V150M20 84 18 145M40 84 42 145" stroke="#b8892f" stroke-width="1.5"/><path d="M22 150h16l-8 18z" fill="#e3b75a"/></svg></div>
+<div class="lantern l2"><svg viewBox="0 0 60 200"><line x1="30" y1="0" x2="30" y2="50" stroke="#e3b75a" stroke-width="2"/><path d="M18 50h24l-4 10H22z" fill="#e3b75a"/><path d="M14 62 Q30 52 46 62 L50 120 Q30 140 10 120Z" fill="#f6d98f" fill-opacity=".85" stroke="#e3b75a" stroke-width="3"/><path d="M30 62V130M20 64 18 125M40 64 42 125" stroke="#b8892f" stroke-width="1.5"/><path d="M22 130h16l-8 18z" fill="#e3b75a"/></svg></div>
+
+<header>
+  <div class="clock" id="clock">--:--</div>
+  <div class="brand">
+    <div class="ar">مسجد سبل السلام</div>
+    <h1>Masjid Subulussalam</h1>
+    <p>Tangerang Selatan · Banten</p>
+  </div>
+  <div class="dates"><div class="hijri" id="hijri">—</div><div class="masehi" id="masehi">—</div></div>
+</header>
+
+<main>
+  <div class="arch">
+    <svg class="frame" viewBox="0 0 400 430" preserveAspectRatio="none">
+      <defs><linearGradient id="ag" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#0f5a43" stop-opacity=".75"/><stop offset="1" stop-color="#03201a" stop-opacity=".6"/></linearGradient></defs>
+      <path d="M10 430 V170 Q10 70 200 6 Q390 70 390 170 V430Z" fill="url(#ag)" stroke="#e3b75a" stroke-width="3"/>
+      <path d="M30 430 V178 Q30 90 200 30 Q370 90 370 178 V430" fill="none" stroke="#e3b75a" stroke-opacity=".4" stroke-width="1.5" stroke-dasharray="6 6"/>
+      <path d="M200 0 l7 10 -7 10 -7 -10z" fill="#f6d98f"/>
+    </svg>
+    <div class="lbl" id="nextLbl">Menuju</div>
+    <div class="name" id="nextName">—</div>
+    <div class="at" id="nextAt">—</div>
+    <div class="cd" id="cd">--:--:--</div>
+  </div>
+
+  <div class="quote">
+    <div class="mark">"</div>
+    <span class="tag" id="qtag">✦ Reminder Hari Ini</span>
+    <blockquote id="quote">—</blockquote>
+    <div class="foot" id="qfoot"></div>
+  </div>
+</main>
+
+<section class="prayers" id="prayers"></section>
+
+<div class="ticker"><div class="badge">INFO</div><div style="flex:1;overflow:hidden"><div class="track">
+  <span>Mohon senyapkan HP selama berada di dalam masjid</span>
+  <span>Luruskan dan rapatkan shaf — shaf lurus, hati adem</span>
+  <span>Jagalah kebersihan dan kesucian masjid</span>
+  <span>"Sesungguhnya sholat itu mencegah dari perbuatan keji dan mungkar" — QS. Al-'Ankabut: 45</span>
+  <span>Kotak infaq tersedia, sedekah tidak akan mengurangi harta</span>
+  <span>Jadwal sholat mengikuti data Kemenag RI untuk Kota Tangerang Selatan</span>
+</div></div></div>
+
+<div class="overlay" id="ov"><div class="ring"></div><div class="ar" id="ovAr"></div><h2 id="ovTitle"></h2><div class="big" id="ovBig"></div><p id="ovSub"></p></div>
+<div class="err" id="err"></div>
+
+<script src="quotes.js"></script>
+<script>
+const CITY = 1108;                       // ID myquran/Kemenag: KOTA TANGERANG SELATAN
+const LAT = -6.2886, LNG = 106.7179;     // fallback Aladhan (method 20 = KEMENAG)
+const ADZAN_MIN = 4;                     // durasi layar adzan
+const IQAMAH = {subuh:10, dzuhur:10, ashar:10, maghrib:7, isya:10};
+const SHOLAT_MIN = 12;                   // layar redup saat sholat berjamaah
+const KEYS = [['imsak','Imsak'],['subuh','Subuh'],['terbit','Terbit'],['dzuhur','Dzuhur'],['ashar','Ashar'],['maghrib','Maghrib'],['isya','Isya']];
+const WAJIB = ['subuh','dzuhur','ashar','maghrib','isya'];
+
+const $ = id => document.getElementById(id);
+const pad = n => String(n).padStart(2,'0');
+const ymd = d => `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+const clean = s => s.slice(0,5);
+
+/* ===== data jadwal: myquran (Kemenag) -> fallback Aladhan method 20 -> cache ===== */
+async function fetchMonth(y, m){
+  try{
+    const r = await fetch(`https://api.myquran.com/v2/sholat/jadwal/${CITY}/${y}/${pad(m)}`);
+    const j = await r.json();
+    if(!j.status) throw 0;
+    const map = {};
+    j.data.jadwal.forEach(d => map[d.date] = {imsak:d.imsak,subuh:d.subuh,terbit:d.terbit,dzuhur:d.dzuhur,ashar:d.ashar,maghrib:d.maghrib,isya:d.isya});
+    return {src:'Kemenag RI (myquran)', map};
+  }catch(e){
+    const r = await fetch(`https://api.aladhan.com/v1/calendar/${y}/${m}?latitude=${LAT}&longitude=${LNG}&method=20`);
+    const j = await r.json();
+    const map = {};
+    j.data.forEach(d => { const [dd,mm,yy] = d.date.gregorian.date.split('-'); const t = d.timings;
+      map[`${yy}-${mm}-${dd}`] = {imsak:clean(t.Imsak),subuh:clean(t.Fajr),terbit:clean(t.Sunrise),dzuhur:clean(t.Dhuhr),ashar:clean(t.Asr),maghrib:clean(t.Maghrib),isya:clean(t.Isha)}; });
+    return {src:'Aladhan (metode Kemenag)', map};
+  }
+}
+// fresh=true: coba ambil ulang dari server (dipanggil tiap ganti hari), simpan cache utk offline
+async function getDay(d, fresh){
+  const y = d.getFullYear(), m = d.getMonth()+1, key = `jadwal-${CITY}-${y}-${m}`;
+  let c = JSON.parse(localStorage.getItem(key) || 'null');
+  if(fresh || !c || !c.map[ymd(d)]){
+    try{ c = await fetchMonth(y, m); localStorage.setItem(key, JSON.stringify(c)); $('err').textContent=''; }
+    catch(e){ $('err').textContent = c ? 'offline · pakai jadwal tersimpan' : 'gagal memuat jadwal, mencoba lagi…'; }
+  }
+  return c && c.map[ymd(d)] ? {...c.map[ymd(d)], src:c.src} : null;
+}
+
+let today=null, tomorrow=null, dayKey='';
+const at = (base, hm) => { const [h,m] = hm.split(':'); const d = new Date(base); d.setHours(+h, +m, 0, 0); return d; };
+
+async function loadDay(){
+  const now = new Date(), tm = new Date(now); tm.setDate(tm.getDate()+1);
+  today = await getDay(now, true);
+  tomorrow = await getDay(tm, false);
+  if(!today){ setTimeout(loadDay, 60000); return; }
+  dayKey = ymd(now);
+  const jumat = now.getDay() === 5;
+  $('prayers').innerHTML = KEYS.map(([k,n]) =>
+    `<div class="p ${WAJIB.includes(k)?'':'minor'}" data-k="${k}"><div class="n">${k==='dzuhur'&&jumat?"Jum'at":n}</div><div class="t">${today[k]}</div><div class="s"></div></div>`).join('');
+  const urlParams = new URLSearchParams(window.location.search);
+  const qOverride = urlParams.get('q');
+  const days = qOverride !== null ? parseInt(qOverride, 10) : Math.floor((now - now.getTimezoneOffset()*60000) / 864e5);
+  const pool = (typeof DAILY !== 'undefined' && Array.isArray(DAILY) && DAILY.length) ? DAILY : [
+    {type:'genz', text:"Bukan masalahmu yang berat, tapi <em>ibadahmu yang telat.</em>", src:''}
+  ];
+  const item = pool[days % pool.length];
+
+  const q = $('quote');
+  q.innerHTML = item.text;
+  if(item.text.length > 140){
+    q.style.fontSize = 'calc(var(--u) * 3.2)';
+    q.style.lineHeight = '1.35';
+  } else if(item.text.length > 80){
+    q.style.fontSize = 'calc(var(--u) * 3.8)';
+    q.style.lineHeight = '1.28';
+  } else {
+    q.style.fontSize = 'calc(var(--u) * 4.6)';
+    q.style.lineHeight = '1.22';
+  }
+  q.classList.remove('fade'); void q.offsetWidth; q.classList.add('fade');
+
+  const tag = $('qtag');
+  if(tag){
+    if(item.type === 'quran'){
+      tag.textContent = '✦ Al-Qur\'an';
+    } else if(item.type === 'hadits'){
+      tag.textContent = '✦ Hadits Nabawi';
+    } else {
+      tag.textContent = '✦ Reminder Hari Ini';
+    }
+  }
+
+  const foot = $('qfoot');
+  if(foot){
+    if(item.src){
+      foot.textContent = 'Sumber: ' + item.src;
+      foot.style.display = 'block';
+    } else {
+      foot.textContent = '';
+      foot.style.display = 'none';
+    }
+  }
+
+  $('masehi').textContent = now.toLocaleDateString('id-ID',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  try{ $('hijri').textContent = new Intl.DateTimeFormat('id-ID-u-ca-islamic-umalqura',{day:'numeric',month:'long',year:'numeric'}).format(now).replace(/\s*(H|AH)$/,'')+' H'; }catch(e){}
+}
+
+function fmt(ms){ const s = Math.max(0, Math.floor(ms/1000)); return `${pad(Math.floor(s/3600))}:${pad(Math.floor(s/60)%60)}:${pad(s%60)}`; }
+function mmss(ms){ const s = Math.max(0, Math.ceil(ms/1000)); return `${pad(Math.floor(s/60))}:${pad(s%60)}`; }
+
+function tick(){
+  const now = new Date();
+  $('clock').innerHTML = `${pad(now.getHours())}:${pad(now.getMinutes())}<small>${pad(now.getSeconds())}</small>`;
+  if(ymd(now) !== dayKey){ dayKey = ymd(now); loadDay(); return; }
+  if(!today) return;
+
+  // next waktu
+  let next = null;
+  for(const [k,n] of KEYS){ const t = at(now, today[k]); if(t > now){ next = {k,n,t}; break; } }
+  if(!next && tomorrow){ const tm = new Date(now); tm.setDate(tm.getDate()+1); next = {k:'subuh', n:'Subuh', t:at(tm, tomorrow.subuh), tmr:true}; }
+  if(next){
+    const nm = next.k==='dzuhur' && now.getDay()===5 ? "Jum'at" : next.n;
+    $('nextName').textContent = nm;
+    $('nextAt').textContent = `pukul ${pad(next.t.getHours())}:${pad(next.t.getMinutes())} WIB${next.tmr?' · besok':''}`;
+    $('cd').textContent = fmt(next.t - now);
+    document.querySelectorAll('.p').forEach(el => {
+      const on = !next.tmr && el.dataset.k === next.k;
+      el.classList.toggle('next', on);
+      el.querySelector('.s').textContent = on ? '−' + fmt(next.t - now) : '';
+    });
+  }
+
+  // mode adzan / iqamah / sholat
+  const ov = $('ov'); let shown = false;
+  for(const k of WAJIB){
+    const t = at(now, today[k]), el = now - t, nm = k==='dzuhur' && now.getDay()===5 ? "Jum'at" : KEYS.find(x=>x[0]===k)[1];
+    const a = ADZAN_MIN*6e4, iq = (k==='dzuhur'&&now.getDay()===5) ? 0 : IQAMAH[k]*6e4, sh = SHOLAT_MIN*6e4;
+    if(el < 0 || el >= a + iq + sh) continue;
+    shown = true; ov.classList.add('on');
+    if(el < a){ ov.classList.remove('dim'); $('ovAr').textContent='اللّٰهُ أَكْبَرُ'; $('ovTitle').textContent=`Waktunya Adzan ${nm}`; $('ovBig').textContent=today[k]; $('ovSub').textContent='Jawablah adzan dan bersiaplah untuk sholat berjamaah'; }
+    else if(el < a + iq){ ov.classList.remove('dim'); $('ovAr').textContent='قَدْ قَامَتِ الصَّلَاةُ'; $('ovTitle').textContent=`Iqamah ${nm}`; $('ovBig').textContent=mmss(a+iq-el); $('ovSub').textContent='Luruskan dan rapatkan shaf · Senyapkan HP'; }
+    else { ov.classList.add('dim'); $('ovAr').textContent='صَلُّوا كَمَا رَأَيْتُمُونِي أُصَلِّي'; $('ovTitle').textContent='Sholat Sedang Berlangsung'; $('ovBig').textContent=''; $('ovSub').textContent='Harap tenang dan tidak berisik'; }
+    break;
+  }
+  if(!shown) ov.classList.remove('on','dim');
+}
+
+// layar tetap nyala & fullscreen saat diklik (remote TV)
+document.addEventListener('click', () => document.documentElement.requestFullscreen?.().catch(()=>{}));
+const wake = () => navigator.wakeLock?.request('screen').catch(()=>{});
+wake(); document.addEventListener('visibilitychange', () => document.visibilityState==='visible' && wake());
+// reload penuh tiap jam 01:00 biar bersih dari memory leak browser TV
+setInterval(() => { const n = new Date(); if(n.getHours()===1 && n.getMinutes()===0 && n.getSeconds()<2) location.reload(); }, 1000);
+
+setInterval(tick, 1000); tick();
+</script>
+</body>
+</html>
